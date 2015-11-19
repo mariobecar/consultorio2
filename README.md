@@ -1,2 +1,2 @@
-proyecto final del segundo semestres del ramo Programación 1 de la carrera Analista Programador.
+proyecto final del segundo semestre del ramo Programación 1 de la carrera Analista Programador.
 
