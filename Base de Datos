@@ -2,7 +2,7 @@ CREATE TABLE PACIENTES
    (
       RUT         VARCHAR(14) NOT NULL constraint RUT primary key,
       NOMBRE      VARCHAR(25) NOT NULL,
-      APELLIDO        VARCHAR(25) NOT NULL,
+      APELLIDO    VARCHAR(25) NOT NULL,
       FECHA_DE_NACIMIENTO DATE,
       
    );
@@ -16,8 +16,8 @@ CREATE TABLE MEDICOS
 
 
 CREATE TABLE CONSULTAS_MEDICAS
-(
-	  CODIGO_CONSULTA INTEGER NOT NULL generated always as identity constraint CODIGO_ CONSULTA primary key,
+(   
+    CODIGO_CONSULTA INTEGER NOT NULL generated always as identity constraint CODIGO_ CONSULTA primary key,
     RUT_PACIENTE VARCHAR (15) NOT NULL,
     RUT_MEDICO VARCHAR (15) NOT NULL, 
     FECHA_CONSULTA DATE NOT NULL,
