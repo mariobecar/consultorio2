@@ -1,0 +1,107 @@
+CREATE TABLE CITIES
+   (
+      CITY_ID          INTEGER NOT NULL constraint cities_pk primary key,
+      CITY_NAME        VARCHAR(24) NOT NULL,
+      COUNTRY          VARCHAR(26) NOT NULL,
+      AIRPORT          VARCHAR(26),
+      LANGUAGE         VARCHAR(16),
+      COUNTRY_ISO_CODE CHAR(2) 
+   );
+
+insert into CITIES VALUES (1,'Amsterdam','Netherlands','AMS','Dutch','NL');
+insert into CITIES VALUES (2,'Athens','Greece','ATH','Greek','GR');
+insert into CITIES VALUES (3,'Auckland','New Zealand','AKL','English','NZ');
+insert into CITIES VALUES (4,'Beirut','Lebanon','BEY','Arabic','LB');
+
+
+CREATE INDEX city_airport_idx on CITIES (AIRPORT);
+
+CREATE TABLE FLIGHTS
+   (
+      FLIGHT_ID      CHAR(6) NOT NULL,
+      SEGMENT_NUMBER INTEGER NOT NULL,
+      ORIG_AIRPORT   CHAR(3),
+      DEPART_TIME    TIME,
+      DEST_AIRPORT   CHAR(3),
+      ARRIVE_TIME    TIME,
+      MEAL           CHAR(1) CONSTRAINT MEAL_CONSTRAINT 
+                        CHECK (meal IN ('B', 'L', 'D', 'S')),
+      FLYING_TIME    DOUBLE PRECISION,
+      MILES          INTEGER,
+      AIRCRAFT       VARCHAR(6),
+      DEPART_DATE	 DATE,
+      CONSTRAINT FLIGHTS_PK Primary Key (FLIGHT_ID)
+   );
+
+insert into FLIGHTS values ('AA1127',1,'ALB','09:00:00','IAD','09:32:00','S',0.548,274,'B747', null); 
+insert into FLIGHTS values ('AA1128',1,'IAD','09:00:00','ALB','09:32:00','S',0.548,274,'B747', null); 
+insert into FLIGHTS values ('US1517',1,'AMS','09:00:00','JFK','10:17:00','B',7.296,3648,'B747', null); 
+
+
+insert into FLIGHTS values ('US1592',1,'YYZ','09:00:00','LHR','21:06:00','L',7.106,3553,'DC10', null); 
+insert into FLIGHTS values ('US1593',1,'LHR','09:00:00','YYZ','11:06:00','L',7.106,3553,'B747', null); 
+insert into FLIGHTS values ('AA1600',1,'SFO','07:00:00','LAX','07:41:00','S',0.694,347,'B767', null); 
+insert into FLIGHTS values ('AA1601',1,'LAX','07:00:00','SFO','07:41:00','S',0.694,347,'B767', null); 
+insert into FLIGHTS values ('AA1602',1,'SFO','14:00:00','LAX','14:41:00','S',0.694,347,'B767', null); 
+insert into FLIGHTS values ('AA1603',1,'LAX','14:00:00','SFO','14:41:00','S',0.622,347,'B767', null); 
+insert into FLIGHTS values ('US1600',1,'YYZ','09:00:00','YUL','09:37:00','S',0.694,311,'DC10', null); 
+
+insert into FLIGHTS values ('US1601',1,'SCL','05:00:00','YUL','17:55:00','L',10.926,5463,'DC10', null); 
+
+
+
+CREATE INDEX DESTINDEX ON FLIGHTS (DEST_AIRPORT) ;
+CREATE INDEX ORIGINDEX ON FLIGHTS (ORIG_AIRPORT) ;
+
+CREATE TABLE USERS 
+   (
+
+      firstname varchar(40) not null,
+      lastname varchar (40) not null,
+      username varchar(20) not null constraint username_pk primary key, 
+      password varchar(20) not null,
+      password_verify varchar(20),
+      email varchar(30) not null
+   );
+   
+INSERT INTO USERS (firstname, lastname, username, password, email) 
+values 
+('apache', 'user', 'apacheu', 'apacheu', 'apacheu@mycompany.com');
+
+
+CREATE TABLE USER_CREDIT_CARD
+(
+  id int not null generated always as identity constraint user_cc_pk primary key,
+
+  username varchar(20) not null,
+  lastname varchar(40),
+  credit_card_type varchar(15) not null,
+  credit_card_number varchar(20) not null,
+  credit_card_display varchar(25) not null
+  );
+  
+ALTER TABLE USER_CREDIT_CARD ADD CONSTRAINT USERNAME_FK
+Foreign Key (username) REFERENCES USERS (username);
+
+insert into USER_CREDIT_CARD (username, credit_card_type, credit_card_number, credit_card_display)
+  values
+  ('apacheu', 'Visa', '4735555555555555', 'xxxx-xxxx-xxxx-x555');
+
+
+
+CREATE TABLE FLIGHTHISTORY
+   (
+      id int not null generated always as identity constraint user_fh_pk primary key,
+      USERNAME       VARCHAR(20) NOT NULL,
+      FLIGHT_ID      CHAR(6) NOT NULL,
+      ORIG_AIRPORT   CHAR(3) NOT NULL,
+      DEST_AIRPORT   CHAR(3) NOT NULL,
+      MILES     	 INTEGER,
+      AIRCRAFT       VARCHAR(6),
+      DEPARTURE_DATE VARCHAR(25),
+	  credit_card_type varchar(15) not null,
+      credit_card_display varchar(25) not null
+   );
+   
+ ALTER TABLE FLIGHTHISTORY ADD CONSTRAINT USERNAME_FH_FK
+Foreign Key (username) REFERENCES USERS (username);
