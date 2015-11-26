@@ -1,0 +1,231 @@
+-- phpMyAdmin SQL Dump
+-- version 3.5.2.2
+-- http://www.phpmyadmin.net
+--
+-- Servidor: localhost
+-- Tiempo de generación: 22-06-2013 a las 06:50:23
+-- Versión del servidor: 5.5.27
+-- Versión de PHP: 5.4.7
+
+SET SQL_MODE="NO_AUTO_VALUE_ON_ZERO";
+SET time_zone = "+00:00";
+
+
+/*!40101 SET @OLD_CHARACTER_SET_CLIENT=@@CHARACTER_SET_CLIENT */;
+/*!40101 SET @OLD_CHARACTER_SET_RESULTS=@@CHARACTER_SET_RESULTS */;
+/*!40101 SET @OLD_COLLATION_CONNECTION=@@COLLATION_CONNECTION */;
+/*!40101 SET NAMES utf8 */;
+
+--
+-- Base de datos: `dbsisremuneraciones`
+--
+
+-- --------------------------------------------------------
+
+--
+-- Estructura de tabla para la tabla `asignacionfamiliar`
+--
+
+CREATE TABLE IF NOT EXISTS `asignacionfamiliar` (
+  `idasignacion` int(10) NOT NULL AUTO_INCREMENT,
+  `monto` varchar(15) DEFAULT NULL,
+  `requisito` varchar(15) DEFAULT NULL,
+  PRIMARY KEY (`idasignacion`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 AUTO_INCREMENT=1 ;
+
+-- --------------------------------------------------------
+
+--
+-- Estructura de tabla para la tabla `cargo`
+--
+
+CREATE TABLE IF NOT EXISTS `cargo` (
+  `idcargo` int(3) NOT NULL AUTO_INCREMENT,
+  `nombre` varchar(50) DEFAULT NULL,
+  `sueldo` varchar(30) DEFAULT NULL,
+  PRIMARY KEY (`idcargo`)
+) ENGINE=InnoDB  DEFAULT CHARSET=utf8 AUTO_INCREMENT=4 ;
+
+--
+-- Volcado de datos para la tabla `cargo`
+--
+
+INSERT INTO `cargo` (`idcargo`, `nombre`, `sueldo`) VALUES
+(1, 'Administrador', NULL),
+(2, 'Administrativo RRHH', NULL),
+(3, 'Empleado', NULL);
+
+-- --------------------------------------------------------
+
+--
+-- Estructura de tabla para la tabla `liquidacion`
+--
+
+CREATE TABLE IF NOT EXISTS `liquidacion` (
+  `rut` varchar(12) NOT NULL DEFAULT '',
+  `mes` varchar(2) NOT NULL,
+  `año` varchar(4) NOT NULL,
+  `ncargafamiliar` varchar(2) DEFAULT NULL,
+  `valorcargafamiliar` varchar(15) DEFAULT NULL,
+  `valorprevision` varchar(15) DEFAULT NULL,
+  `totalprevision` varchar(15) DEFAULT NULL,
+  `valorsalud` varchar(15) DEFAULT NULL,
+  `totalsalud` varchar(15) DEFAULT NULL,
+  `sueldobase` varchar(15) DEFAULT NULL,
+  `ndiastrabajados` varchar(2) DEFAULT NULL,
+  `valordiastrabajados` varchar(15) DEFAULT NULL,
+  `nhorasextras` varchar(2) DEFAULT NULL,
+  `valorhorasextras` varchar(15) DEFAULT NULL,
+  `gratificacion` varchar(15) DEFAULT NULL,
+  `bono` varchar(15) DEFAULT NULL,
+  `comision` varchar(15) DEFAULT NULL,
+  `movilizacion` varchar(15) DEFAULT NULL,
+  `colacion` varchar(15) DEFAULT NULL,
+  `scesantia` varchar(15) DEFAULT NULL,
+  `anticipos` varchar(15) DEFAULT NULL,
+  `idprestamo` int(10) DEFAULT NULL,
+  `tnoimponible` varchar(15) DEFAULT NULL,
+  `timponible` varchar(15) DEFAULT NULL,
+  `tdescuentos` varchar(15) DEFAULT NULL,
+  `liquidonumero` varchar(15) DEFAULT NULL,
+  `liquidoletras` varchar(250) DEFAULT NULL,
+  PRIMARY KEY (`rut`,`mes`,`año`),
+  KEY `idprestamo` (`idprestamo`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+-- --------------------------------------------------------
+
+--
+-- Estructura de tabla para la tabla `parametros`
+--
+
+CREATE TABLE IF NOT EXISTS `parametros` (
+  `mes` varchar(2) NOT NULL,
+  `año` varchar(4) NOT NULL,
+  `nombre` varchar(50) NOT NULL,
+  `valor` varchar(15) DEFAULT NULL,
+  PRIMARY KEY (`nombre`,`mes`,`año`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+-- --------------------------------------------------------
+
+--
+-- Estructura de tabla para la tabla `prestamo`
+--
+
+CREATE TABLE IF NOT EXISTS `prestamo` (
+  `idprestamo` int(10) NOT NULL AUTO_INCREMENT,
+  `ruttrabajador` varchar(12) DEFAULT NULL,
+  `mes` varchar(2) DEFAULT NULL,
+  `año` varchar(4) DEFAULT NULL,
+  `monto` varchar(10) DEFAULT NULL,
+  `numerocuotas` varchar(2) DEFAULT NULL,
+  `valorcuota` varchar(10) DEFAULT NULL,
+  PRIMARY KEY (`idprestamo`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 AUTO_INCREMENT=1 ;
+
+-- --------------------------------------------------------
+
+--
+-- Estructura de tabla para la tabla `prevision`
+--
+
+CREATE TABLE IF NOT EXISTS `prevision` (
+  `mes` varchar(2) NOT NULL,
+  `año` varchar(4) NOT NULL,
+  `nombre` varchar(50) NOT NULL,
+  `valor` varchar(15) DEFAULT NULL,
+  PRIMARY KEY (`nombre`,`mes`,`año`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+--
+-- Volcado de datos para la tabla `prevision`
+--
+
+INSERT INTO `prevision` (`mes`, `año`, `nombre`, `valor`) VALUES
+('1', '2013', 'Cuprum', '11.98%'),
+('2', '2013', 'Cuprum', '11.99%'),
+('0', '2013', 'habitad', '11.7%'),
+('1', '2013', 'habitad', ''),
+('2', '2013', 'JAJAJAJ', '7%'),
+('1', '2013', 'provida', '10.98%');
+
+-- --------------------------------------------------------
+
+--
+-- Estructura de tabla para la tabla `salud`
+--
+
+CREATE TABLE IF NOT EXISTS `salud` (
+  `mes` varchar(2) NOT NULL,
+  `año` varchar(4) NOT NULL,
+  `nombre` varchar(50) NOT NULL,
+  `valor` varchar(15) DEFAULT NULL,
+  PRIMARY KEY (`nombre`,`mes`,`año`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+--
+-- Volcado de datos para la tabla `salud`
+--
+
+INSERT INTO `salud` (`mes`, `año`, `nombre`, `valor`) VALUES
+('1', '2013', 'Salud', '7%');
+
+-- --------------------------------------------------------
+
+--
+-- Estructura de tabla para la tabla `trabajador`
+--
+
+CREATE TABLE IF NOT EXISTS `trabajador` (
+  `ruttrabajador` varchar(12) NOT NULL DEFAULT '',
+  `nombre` varchar(50) DEFAULT NULL,
+  `paterno` varchar(50) DEFAULT NULL,
+  `materno` varchar(50) DEFAULT NULL,
+  `idcargo` int(3) DEFAULT NULL,
+  `nombresalud` varchar(50) DEFAULT NULL,
+  `nombreprevision` varchar(50) DEFAULT NULL,
+  `fechaingreso` varchar(15) DEFAULT NULL,
+  `tipocontrato` varchar(50) DEFAULT NULL,
+  `ncargafamiliar` varchar(5) DEFAULT NULL,
+  `sueldobase` varchar(10) DEFAULT NULL,
+  `direccion` varchar(100) DEFAULT NULL,
+  `telefono` varchar(10) DEFAULT NULL,
+  `email` varchar(40) DEFAULT NULL,
+  `clave` varchar(30) DEFAULT NULL,
+  `estado` varchar(30) DEFAULT NULL,
+  PRIMARY KEY (`ruttrabajador`),
+  KEY `idcargo` (`idcargo`),
+  KEY `nombresalud` (`nombresalud`),
+  KEY `nombreprevision` (`nombreprevision`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+--
+-- Volcado de datos para la tabla `trabajador`
+--
+
+INSERT INTO `trabajador` (`ruttrabajador`, `nombre`, `paterno`, `materno`, `idcargo`, `nombresalud`, `nombreprevision`, `fechaingreso`, `tipocontrato`, `ncargafamiliar`, `sueldobase`, `direccion`, `telefono`, `email`, `clave`, `estado`) VALUES
+('123', 'Cristian Esteban', 'Pardo', 'Velásquez', 1, 'Salud', 'Cuprum', '3-4-2013', 'Definido', '1', '187500', 'Ejercito 201', '666', NULL, '123', 'Activo');
+
+--
+-- Restricciones para tablas volcadas
+--
+
+--
+-- Filtros para la tabla `liquidacion`
+--
+ALTER TABLE `liquidacion`
+  ADD CONSTRAINT `liquidacion_ibfk_1` FOREIGN KEY (`rut`) REFERENCES `trabajador` (`ruttrabajador`),
+  ADD CONSTRAINT `liquidacion_ibfk_2` FOREIGN KEY (`idprestamo`) REFERENCES `prestamo` (`idprestamo`);
+
+--
+-- Filtros para la tabla `trabajador`
+--
+ALTER TABLE `trabajador`
+  ADD CONSTRAINT `trabajador_ibfk_1` FOREIGN KEY (`idcargo`) REFERENCES `cargo` (`idcargo`),
+  ADD CONSTRAINT `trabajador_ibfk_2` FOREIGN KEY (`nombresalud`) REFERENCES `salud` (`nombre`),
+  ADD CONSTRAINT `trabajador_ibfk_3` FOREIGN KEY (`nombreprevision`) REFERENCES `prevision` (`nombre`);
+
+/*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
+/*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;
+/*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
