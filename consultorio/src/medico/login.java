@@ -4,6 +4,9 @@
  * and open the template in the editor.
  */
 package medico;
+import javax.swing.JOptionPane;
+import medico.extras.Usuario;
+
 
 /**
  *
@@ -40,6 +43,11 @@ public class login extends javax.swing.JFrame {
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
         jButton1.setText("INGRESAR");
+        jButton1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton1ActionPerformed(evt);
+            }
+        });
 
         jButton2.setText("SALIR");
         jButton2.addActionListener(new java.awt.event.ActionListener() {
@@ -54,7 +62,7 @@ public class login extends javax.swing.JFrame {
 
         jLabel3.setText("ACCESO CONSULTORIO \"TÚ TE SANAS\"");
 
-        jComboBox1.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Médico", "Paciente" }));
+        jComboBox1.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "medico", "paciente", "mario" }));
         jComboBox1.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jComboBox1ActionPerformed(evt);
@@ -127,6 +135,38 @@ public class login extends javax.swing.JFrame {
     private void jComboBox1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jComboBox1ActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_jComboBox1ActionPerformed
+
+    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
+        String user = (String) jComboBox1.getSelectedItem();
+        String pass = jPasswordField1.getText();
+        
+        
+        //String priv=null;
+        Usuario u=new Usuario();
+        u=u.verificarUsuario(pass, user);
+        if(u==null){
+            System.out.println("Error inicio de sesión");
+            JOptionPane.showMessageDialog(this, "El nombre de usuario y/o contraseña no son validos.");
+        }
+        else if(u!=null){
+                if(user=="mario"){
+                    //priv="medico";
+                    JOptionPane.showMessageDialog(this, "Bienvenido (a) "+u.getNombre()+"" );
+                    
+                }
+                else if(user=="paciente"){
+                    //priv="paciente";
+                    JOptionPane.showMessageDialog(this, "Bienvenido (a) "+u.getNombre()+" ");
+                    
+                }
+                
+                }
+                else{
+                    JOptionPane.showMessageDialog(this, "Error de inicio de sesión: El tipo de usuario \""+user+"\" no tiene un area de trabajo creada.\nPor favor indique esta situación al administrador del sistema.");
+                      
+                }
+      
+    }//GEN-LAST:event_jButton1ActionPerformed
 
     /**
      * @param args the command line arguments

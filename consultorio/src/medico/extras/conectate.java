@@ -3,7 +3,7 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package medico;
+package medico.extras;
 
 import java.sql.Connection;
 import java.sql.DriverManager;
@@ -14,9 +14,9 @@ import java.sql.SQLException;
  * @author mariobecar
  */
 public class conectate {
-   static String bd = "Prueba3";//nombre de la base de datos que esta en mysql
-   static String login = "prueba";// usuario
-   static String password ="prueba3";// contraseña
+   static String bd = "Consultorio1";//nombre de la base de datos que esta en mysql
+   static String login = "consultorio";// usuario
+   static String password ="java123";// contraseña
    static String url = "jdbc:derby://localhost:1527/"+bd;
 
    
