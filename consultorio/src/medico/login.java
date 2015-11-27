@@ -8,10 +8,6 @@ import javax.swing.JOptionPane;
 import medico.extras.Usuario;
 
 
-/**
- *
- * @author ricardo
- */
 public class login extends javax.swing.JFrame {
 
     /**
@@ -62,7 +58,7 @@ public class login extends javax.swing.JFrame {
 
         jLabel3.setText("ACCESO CONSULTORIO \"TÚ TE SANAS\"");
 
-        jComboBox1.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "medico", "paciente", "mario" }));
+        jComboBox1.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "medico", "paciente" }));
         jComboBox1.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jComboBox1ActionPerformed(evt);
@@ -139,24 +135,32 @@ public class login extends javax.swing.JFrame {
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
         String user = (String) jComboBox1.getSelectedItem();
         String pass = jPasswordField1.getText();
+        String tipo = "";
         
+        if(jComboBox1.getSelectedItem()=="medico"){
+            tipo="1";
+        
+        }
+        if (jComboBox1.getSelectedItem()=="paciente"){
+            tipo="2";
+        } 
         
         //String priv=null;
         Usuario u=new Usuario();
-        u=u.verificarUsuario(pass, user);
+        u=u.verificarUsuario(pass, tipo);
         if(u==null){
             System.out.println("Error inicio de sesión");
             JOptionPane.showMessageDialog(this, "El nombre de usuario y/o contraseña no son validos.");
         }
         else if(u!=null){
-                if(user=="mario"){
+                if(tipo=="1"){
                     //priv="medico";
-                    JOptionPane.showMessageDialog(this, "Bienvenido (a) "+u.getNombre()+"" );
+                    JOptionPane.showMessageDialog(this, "Bienvenido (a) "+user+"  "+u.getNombre()+"" );
                     
                 }
-                else if(user=="paciente"){
+                else if(tipo=="2"){
                     //priv="paciente";
-                    JOptionPane.showMessageDialog(this, "Bienvenido (a) "+u.getNombre()+" ");
+                    JOptionPane.showMessageDialog(this, "Bienvenido (a) "+user+"  "+u.getNombre()+"" );
                     
                 }
                 
