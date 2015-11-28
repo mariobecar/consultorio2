@@ -50,7 +50,7 @@ public class EscritorioMedico extends javax.swing.JFrame {
             .addGap(0, 702, Short.MAX_VALUE)
         );
 
-        jMenu1.setText("Consulta Paciente");
+        jMenu1.setText("Buscar Paciente");
         jMenu1.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jMenu1ActionPerformed(evt);

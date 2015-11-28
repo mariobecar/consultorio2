@@ -3,9 +3,12 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package medico;
+package login;
+import conectate.Usuario;
 import javax.swing.JOptionPane;
-import medico.extras.Usuario;
+import medico.EscritorioMedico;
+import paciente.BuscarPaciente;
+
 
 
 public class login extends javax.swing.JFrame {
@@ -137,6 +140,7 @@ public class login extends javax.swing.JFrame {
         String pass = jPasswordField1.getText();
         String tipo = "";
         
+        
         if(jComboBox1.getSelectedItem()=="medico"){
             tipo="1";
         
@@ -149,18 +153,25 @@ public class login extends javax.swing.JFrame {
         Usuario u=new Usuario();
         u=u.verificarUsuario(pass, tipo);
         if(u==null){
-            System.out.println("Error inicio de sesión");
-            JOptionPane.showMessageDialog(this, "El nombre de usuario y/o contraseña no son validos.");
+            JOptionPane.showMessageDialog(this, "El nombre de usuario y/o contraseña no son válidos.");
         }
         else if(u!=null){
                 if(tipo=="1"){
                     //priv="medico";
-                    JOptionPane.showMessageDialog(this, "Bienvenido (a) "+user+"  "+u.getNombre()+"" );
+                    JOptionPane.showMessageDialog(this, "Bienvenido (a) "+user+": "+u.getNombre()+"" );
+                    EscritorioMedico e= new EscritorioMedico();
+                    e.setVisible(rootPaneCheckingEnabled);
+                    dispose();
                     
                 }
                 else if(tipo=="2"){
                     //priv="paciente";
-                    JOptionPane.showMessageDialog(this, "Bienvenido (a) "+user+"  "+u.getNombre()+"" );
+                    JOptionPane.showMessageDialog(this, "Bienvenido (a) "+user+": "+u.getNombre()+"" );
+                    BuscarPaciente b = new BuscarPaciente();
+                    b.setVisible(rootPaneCheckingEnabled);
+                    dispose();
+                    
+                    
                     
                 }
                 
@@ -169,9 +180,16 @@ public class login extends javax.swing.JFrame {
                     JOptionPane.showMessageDialog(this, "Error de inicio de sesión: El tipo de usuario \""+user+"\" no tiene un area de trabajo creada.\nPor favor indique esta situación al administrador del sistema.");
                       
                 }
+        
+        BuscarPaciente.jTextField1.setText(pass);
+        
       
     }//GEN-LAST:event_jButton1ActionPerformed
 
+    
+    
+
+    
     /**
      * @param args the command line arguments
      */

@@ -3,21 +3,23 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package medico;
+package paciente;
 
+import medico.*;
 import javax.swing.JOptionPane;
 import conectate.Usuario;
+import javax.swing.JTextField;
 
 /**
  *
  * @author ricardo
  */
-public class consultamedico extends javax.swing.JFrame {
+public class BuscarPaciente extends javax.swing.JFrame {
 
     /**
      * Creates new form consultamedico
      */
-    public consultamedico() {
+    public BuscarPaciente() {
         initComponents();
         this.setLocationRelativeTo(null);
     }
@@ -55,6 +57,13 @@ public class consultamedico extends javax.swing.JFrame {
         jPanel2.setBorder(javax.swing.BorderFactory.createTitledBorder("Consultorio \"Tú te sanas\""));
 
         jLabel1.setText("BUSCAR REGISTRO DE PACIENTE");
+
+        jTextField1.setEditable(false);
+        jTextField1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jTextField1ActionPerformed(evt);
+            }
+        });
 
         jLabel2.setText("RUT:");
 
@@ -132,25 +141,26 @@ public class consultamedico extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void BuscarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BuscarActionPerformed
-    String pass = jTextField1.getText();
-    String tipo = "2";
     
-    
-    Usuario u=new Usuario();
-        u=u.verificarUsuario(pass, tipo);
-        if(u==null){
-            JOptionPane.showMessageDialog(this, "ingrese un rut, por favor");
-        }
-        else if(u!=null){
-            
-            IngresarConsulta in = new IngresarConsulta ();
-            in.setVisible(true);
+            historialPaciente hp = new historialPaciente ();
+            hp.setVisible(true);
     }//GEN-LAST:event_BuscarActionPerformed
-}
+
+    
+    
+    
+
+    
+    
+  
     
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
         System.exit(0);
     }//GEN-LAST:event_jButton1ActionPerformed
+
+    private void jTextField1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextField1ActionPerformed
+       
+    }//GEN-LAST:event_jTextField1ActionPerformed
 
     /**
      * @param args the command line arguments
@@ -169,20 +179,21 @@ public class consultamedico extends javax.swing.JFrame {
                 }
             }
         } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(consultamedico.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(BuscarPaciente.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(consultamedico.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(BuscarPaciente.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(consultamedico.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(BuscarPaciente.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(consultamedico.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(BuscarPaciente.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         }
+        //</editor-fold>
         //</editor-fold>
 
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                new consultamedico().setVisible(true);
+                new BuscarPaciente().setVisible(true);
             }
         });
     }
@@ -194,6 +205,6 @@ public class consultamedico extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel2;
     private javax.swing.JPanel jPanel1;
     public static javax.swing.JPanel jPanel2;
-    private javax.swing.JTextField jTextField1;
+    public static javax.swing.JTextField jTextField1;
     // End of variables declaration//GEN-END:variables
 }

@@ -1,7 +1,8 @@
-package medico.extras;
+package conectate;
 
 import java.sql.*;
 import javax.swing.JOptionPane;
+import conectate.conectate;
 
 
 
