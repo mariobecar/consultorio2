@@ -2,7 +2,7 @@ package conectate;
 
 import java.sql.*;
 import javax.swing.JOptionPane;
-import conectate.conectate;
+
 
 
 
@@ -60,10 +60,6 @@ public class Usuario{
             }
         }
         
-        
-        
-        
-        
         try{
             conectate c=new conectate();
             cn=c.getConnection();
@@ -99,12 +95,6 @@ public class Usuario{
             }
         }
         
-        
-        
-        
-        
-        
-        
         return u;
     }
 
@@ -132,11 +122,5 @@ public class Usuario{
         this.nombre = nombre;
     }
     
-    
-
-   
-
-   
-
    
 }

@@ -5,15 +5,14 @@
  */
 package paciente;
 
-import medico.*;
-import javax.swing.JOptionPane;
-import conectate.Usuario;
-import javax.swing.JTextField;
+import conectate.Paciente;
+import conectate.conectate;
 
-/**
- *
- * @author ricardo
- */
+import javax.swing.table.DefaultTableModel;
+import javax.swing.table.TableColumn;
+
+
+
 public class BuscarPaciente extends javax.swing.JFrame {
 
     /**
@@ -142,17 +141,38 @@ public class BuscarPaciente extends javax.swing.JFrame {
 
     private void BuscarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BuscarActionPerformed
     
+        
             historialPaciente hp = new historialPaciente ();
-            hp.setVisible(true);
+            updateTabla();
+            
+            hp.show();
+            
+            
+            
+      
     }//GEN-LAST:event_BuscarActionPerformed
 
-    
-    
-    
-
-    
-    
-  
+        
+        
+        
+        
+        
+        private void updateTabla(){             
+        String[] columNames = {"Fecha","Diagnostico","Tratamiento",};  
+        // se utiliza la funcion
+        dtPer =p.getDatos();  //MARCA ERROR
+               
+        // se colocan los datos en la tabla
+        DefaultTableModel datos = new DefaultTableModel(dtPer,columNames);                        
+        historialPaciente.tabla.setModel(datos);
+         
+        //ajustamos tamaño de la celda ID
+        TableColumn columna = historialPaciente.tabla.getColumn("Fecha");        
+        columna.setPreferredWidth(50);
+        columna.setMinWidth(10);
+        columna.setMaxWidth(30);
+        }
+        
     
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
         System.exit(0);
@@ -198,6 +218,13 @@ public class BuscarPaciente extends javax.swing.JFrame {
         });
     }
 
+    
+    
+    
+    Paciente p= new Paciente ();
+    Object[][]dtPer;
+    int fila= -1 ;
+        
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton Buscar;
     private javax.swing.JButton jButton1;
@@ -207,4 +234,9 @@ public class BuscarPaciente extends javax.swing.JFrame {
     public static javax.swing.JPanel jPanel2;
     public static javax.swing.JTextField jTextField1;
     // End of variables declaration//GEN-END:variables
+
+conectate conn= new conectate();
+
+
 }
+
