@@ -6,14 +6,19 @@
 package paciente;
 
 import conectate.Paciente;
-import conectate.conectate;
-
+import java.text.SimpleDateFormat;
+import java.util.Calendar;
+import java.util.GregorianCalendar;
 import javax.swing.table.DefaultTableModel;
 import javax.swing.table.TableColumn;
+import static paciente.historialPaciente.txtFecha;
 
 
 
 public class BuscarPaciente extends javax.swing.JFrame {
+    
+    
+    
 
     /**
      * Creates new form consultamedico
@@ -35,10 +40,11 @@ public class BuscarPaciente extends javax.swing.JFrame {
         jPanel1 = new javax.swing.JPanel();
         jPanel2 = new javax.swing.JPanel();
         jLabel1 = new javax.swing.JLabel();
-        jTextField1 = new javax.swing.JTextField();
+        RUT = new javax.swing.JTextField();
         jLabel2 = new javax.swing.JLabel();
         Buscar = new javax.swing.JButton();
         jButton1 = new javax.swing.JButton();
+        Tipo = new javax.swing.JTextField();
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
@@ -57,10 +63,10 @@ public class BuscarPaciente extends javax.swing.JFrame {
 
         jLabel1.setText("BUSCAR REGISTRO DE PACIENTE");
 
-        jTextField1.setEditable(false);
-        jTextField1.addActionListener(new java.awt.event.ActionListener() {
+        RUT.setEditable(false);
+        RUT.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jTextField1ActionPerformed(evt);
+                RUTActionPerformed(evt);
             }
         });
 
@@ -80,37 +86,44 @@ public class BuscarPaciente extends javax.swing.JFrame {
             }
         });
 
+        Tipo.setBackground(new java.awt.Color(238, 238, 238));
+        Tipo.setForeground(new java.awt.Color(237, 237, 237));
+
         javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
         jPanel2.setLayout(jPanel2Layout);
         jPanel2Layout.setHorizontalGroup(
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel2Layout.createSequentialGroup()
+                .addGap(34, 34, 34)
+                .addComponent(jLabel2)
+                .addGap(18, 18, 18)
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(RUT, javax.swing.GroupLayout.PREFERRED_SIZE, 227, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addGroup(jPanel2Layout.createSequentialGroup()
-                        .addGap(34, 34, 34)
-                        .addComponent(jLabel2)
-                        .addGap(18, 18, 18)
-                        .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jLabel1)
-                            .addComponent(jTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, 227, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addGap(0, 42, Short.MAX_VALUE))
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel2Layout.createSequentialGroup()
-                        .addGap(0, 0, Short.MAX_VALUE)
-                        .addComponent(jButton1)))
-                .addContainerGap())
+                        .addComponent(jLabel1)
+                        .addGap(55, 55, 55)
+                        .addComponent(Tipo, javax.swing.GroupLayout.PREFERRED_SIZE, 0, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addGap(17, 17, 17))
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel2Layout.createSequentialGroup()
                 .addGap(0, 0, Short.MAX_VALUE)
-                .addComponent(Buscar, javax.swing.GroupLayout.PREFERRED_SIZE, 121, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(112, 112, 112))
+                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel2Layout.createSequentialGroup()
+                        .addComponent(jButton1)
+                        .addContainerGap())
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel2Layout.createSequentialGroup()
+                        .addComponent(Buscar, javax.swing.GroupLayout.PREFERRED_SIZE, 121, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(112, 112, 112))))
         );
         jPanel2Layout.setVerticalGroup(
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel2Layout.createSequentialGroup()
-                .addGap(38, 38, 38)
-                .addComponent(jLabel1)
+                .addGap(33, 33, 33)
+                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel1)
+                    .addComponent(Tipo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(18, 18, 18)
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(RUT, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jLabel2))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(Buscar)
@@ -123,10 +136,10 @@ public class BuscarPaciente extends javax.swing.JFrame {
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
-                .addContainerGap()
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                .addContainerGap(23, Short.MAX_VALUE)
                 .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addGap(21, 21, 21))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -141,26 +154,46 @@ public class BuscarPaciente extends javax.swing.JFrame {
 
     private void BuscarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BuscarActionPerformed
     
+        historialPaciente hp = new historialPaciente ();
+        updateTabla();
+        hp.show();
+        datos=p.getInfoPaciente();
+        Paciente=p.getNombrePaciente();
+        Medico=p.getNombreMedico();
         
-            historialPaciente hp = new historialPaciente ();
-            updateTabla();
-            
-            hp.show();
-            
-            
-            
-      
+        
+        String jojo= historialPaciente.jTipo.getText();
+        
+        if("1".equals(jojo)){
+            historialPaciente.tipoConsulta.setText("Consulta Médica");
+        }
+        if("2".equals(jojo)){
+            historialPaciente.tipoConsulta.setText("Revisión de exámenes");
+    }
+       Calendar c1 = GregorianCalendar.getInstance();
+        SimpleDateFormat sdf = new SimpleDateFormat("dd/MMMMM/yyyy");
+        txtFecha.setText(sdf.format(c1.getTime()));
+        
+        
+        
+        if("1".equals(historialPaciente.uno.getText())){
+            historialPaciente.pBio.setText("SI");
+        
+        }
+        
+        if("2".equals(historialPaciente.uno.getText())){
+            historialPaciente.pBio.setText("NO");
+        
     }//GEN-LAST:event_BuscarActionPerformed
-
+      
         
         
-        
-        
-        
-        private void updateTabla(){             
+    }
+    private void updateTabla(){         
+       
         String[] columNames = {"Fecha","Diagnostico","Tratamiento",};  
         // se utiliza la funcion
-        dtPer =p.getDatos();  //MARCA ERROR
+        dtPer =p.getDatos(); 
                
         // se colocan los datos en la tabla
         DefaultTableModel datos = new DefaultTableModel(dtPer,columNames);                        
@@ -169,18 +202,19 @@ public class BuscarPaciente extends javax.swing.JFrame {
         //ajustamos tamaño de la celda ID
         TableColumn columna = historialPaciente.tabla.getColumn("Fecha");        
         columna.setPreferredWidth(50);
-        columna.setMinWidth(10);
-        columna.setMaxWidth(30);
-        }
+        columna.setMinWidth(105);
+        columna.setMaxWidth(60);
         
-    
+        }
+
+        
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
         System.exit(0);
     }//GEN-LAST:event_jButton1ActionPerformed
 
-    private void jTextField1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextField1ActionPerformed
+    private void RUTActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_RUTActionPerformed
        
-    }//GEN-LAST:event_jTextField1ActionPerformed
+    }//GEN-LAST:event_RUTActionPerformed
 
     /**
      * @param args the command line arguments
@@ -217,25 +251,26 @@ public class BuscarPaciente extends javax.swing.JFrame {
             }
         });
     }
-
-    
-    
     
     Paciente p= new Paciente ();
     Object[][]dtPer;
     int fila= -1 ;
-        
+    Object[][]datos;
+    Object[][]Paciente;
+    Object[][]Medico;
+    
+    
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton Buscar;
+    public static javax.swing.JTextField RUT;
+    public static javax.swing.JTextField Tipo;
     private javax.swing.JButton jButton1;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JPanel jPanel1;
     public static javax.swing.JPanel jPanel2;
-    public static javax.swing.JTextField jTextField1;
     // End of variables declaration//GEN-END:variables
 
-conectate conn= new conectate();
 
 
 }

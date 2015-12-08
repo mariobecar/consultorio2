@@ -39,6 +39,9 @@ public class conectate {
          System.out.println(e);
       }
    }
+   
+   
+   
    /**Permite retornar la conexión*/
    public Connection getConnection(){
       return conn;
@@ -48,4 +51,5 @@ public class conectate {
       conn = null;
       System.out.println("La conexion a la  base de datos "+bd+" a terminado");
    }
+
 }

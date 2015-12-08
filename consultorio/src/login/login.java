@@ -171,18 +171,12 @@ public class login extends javax.swing.JFrame {
                     b.setVisible(rootPaneCheckingEnabled);
                     dispose();
                     
-                    
-                    
                 }
-                
                 }
                 else{
                     JOptionPane.showMessageDialog(this, "Error de inicio de sesión: El tipo de usuario \""+user+"\" no tiene un area de trabajo creada.\nPor favor indique esta situación al administrador del sistema.");
-                      
                 }
-        
-        BuscarPaciente.jTextField1.setText(pass);
-        
+        BuscarPaciente.RUT.setText(pass);
       
     }//GEN-LAST:event_jButton1ActionPerformed
 
