@@ -185,8 +185,8 @@ public class Paciente {
  }  
  
  
- 
- public Object [][] getExamenes(){
+ // Principales
+ public Object [][] getExamen1(){
      
       int registros = 0;
       //obtenemos la cantidad de registros existentes en la tabla
@@ -200,42 +200,21 @@ public class Paciente {
          System.out.println(e);
       }
       
-    Object[][] dato = new String[registros][2];  
-    //realizamos la consulta sql y llenamos los datos en "Object"
+    Object[][] dato = new String[registros][1];  
       try{ 
-         PreparedStatement pstm = con.getConnection().prepareStatement(" SELECT * FROM DETALLE_CONSULTA "   
-                 + "WHERE CODIGO_CONSULTA='"+ historialPaciente.codigo.getText()+"' "); 
-             try (ResultSet res = pstm.executeQuery()) {
+         PreparedStatement pstm = con.getConnection().prepareStatement(" SELECT SOLICITADO FROM DETALLE_CONSULTA "   
+                 + "WHERE CODIGO_CONSULTA="+ historialPaciente.codigo.getText()+" AND CODIGO_EXAMEN=1  "); 
+         
+          try (ResultSet res = pstm.executeQuery()) {
               int i = 0;
               while(res.next()){
                   String estUno = res.getString("SOLICITADO");
-                  String estDos = res.getString("SOLICITADO");
-                  String estTres = res.getString("SOLICITADO");
-                  String estCuatro = res.getString("SOLICITADO");
-                  String estCinco = res.getString("SOLICITADO");
-                  String estSeis = res.getString("SOLICITADO");
-                  String estSiete = res.getString("SOLICITADO");
-                  String estOcho = res.getString("SOLICITADO");
-                  String estNueve = res.getString("SOLICITADO");
-                  String estDiez = res.getString("SOLICITADO");
-                  String estOnce = res.getString("SOLICITADO");
-                  String estDoce = res.getString("SOLICITADO");
                   
                   dato[i][0] = estUno;
-                  dato[i][1] = estDos;  
                   
-                  historialPaciente.uno.setText(estUno);
-                  historialPaciente.dos.setText(estDos);
-                  historialPaciente.tres.setText(estTres);
-                  historialPaciente.cuatro.setText(estCuatro);
-                  historialPaciente.cinco.setText(estCinco);
-                  historialPaciente.seis.setText(estSeis);
-                  historialPaciente.siete.setText(estSiete);
-                  historialPaciente.ocho.setText(estOcho);
-                  historialPaciente.nueve.setText(estNueve);
-                  historialPaciente.diez.setText(estDiez);
-                  historialPaciente.once.setText(estOnce);
-                  historialPaciente.doce.setText(estDoce);
+                  
+                  historialPaciente.pBio.setText(estUno);
+                 
                   i++;
                   
               }}
@@ -247,11 +226,549 @@ public class Paciente {
     return dato;
  }  
  
+  public Object [][] getExamen2(){
+     
+      int registros = 0;
+      //obtenemos la cantidad de registros existentes en la tabla
+      try{         
+         PreparedStatement pstm = con.getConnection().prepareStatement("SELECT count(1) as total FROM DETALLE_CONSULTA "); 
+          try (ResultSet res = pstm.executeQuery()) {
+              res.next();
+              registros = res.getInt("total");
+          }
+      }catch(SQLException e){
+         System.out.println(e);
+      }
+      
+    Object[][] dato = new String[registros][1];  
+      try{ 
+         PreparedStatement pstm = con.getConnection().prepareStatement(" SELECT SOLICITADO FROM DETALLE_CONSULTA "   
+                 + "WHERE CODIGO_CONSULTA="+ historialPaciente.codigo.getText()+" AND CODIGO_EXAMEN=2  "); 
+         
+          try (ResultSet res = pstm.executeQuery()) {
+              int i = 0;
+              while(res.next()){
+                  String estUno = res.getString("SOLICITADO");
+                  
+                  dato[i][0] = estUno;
+                  
+                  
+                  historialPaciente.pOri.setText(estUno);
+                 
+                  i++;
+                  
+              }}
+          }catch(SQLException e){
+         System.out.println(e);
+    }
+      
+      
+    return dato;
+ }  
+  
+  public Object [][] getExamen3(){
+     
+      int registros = 0;
+      //obtenemos la cantidad de registros existentes en la tabla
+      try{         
+         PreparedStatement pstm = con.getConnection().prepareStatement("SELECT count(1) as total FROM DETALLE_CONSULTA "); 
+          try (ResultSet res = pstm.executeQuery()) {
+              res.next();
+              registros = res.getInt("total");
+          }
+      }catch(SQLException e){
+         System.out.println(e);
+      }
+      
+    Object[][] dato = new String[registros][1];  
+      try{ 
+         PreparedStatement pstm = con.getConnection().prepareStatement(" SELECT SOLICITADO FROM DETALLE_CONSULTA "   
+                 + "WHERE CODIGO_CONSULTA="+ historialPaciente.codigo.getText()+" AND CODIGO_EXAMEN=3  "); 
+         
+          try (ResultSet res = pstm.executeQuery()) {
+              int i = 0;
+              while(res.next()){
+                  String estUno = res.getString("SOLICITADO");
+                  
+                  dato[i][0] = estUno;
+                  
+                  
+                  historialPaciente.pHec.setText(estUno);
+                 
+                  i++;
+                  
+              }}
+          }catch(SQLException e){
+         System.out.println(e);
+    }
+      
+      
+    return dato;
+ }  
+  
+  public Object [][] getExamen4(){
+     
+      int registros = 0;
+      //obtenemos la cantidad de registros existentes en la tabla
+      try{         
+         PreparedStatement pstm = con.getConnection().prepareStatement("SELECT count(1) as total FROM DETALLE_CONSULTA "); 
+          try (ResultSet res = pstm.executeQuery()) {
+              res.next();
+              registros = res.getInt("total");
+          }
+      }catch(SQLException e){
+         System.out.println(e);
+      }
+      
+    Object[][] dato = new String[registros][1];  
+      try{ 
+         PreparedStatement pstm = con.getConnection().prepareStatement(" SELECT SOLICITADO FROM DETALLE_CONSULTA "   
+                 + "WHERE CODIGO_CONSULTA="+ historialPaciente.codigo.getText()+" AND CODIGO_EXAMEN=4  "); 
+         
+          try (ResultSet res = pstm.executeQuery()) {
+              int i = 0;
+              while(res.next()){
+                  String estUno = res.getString("SOLICITADO");
+                  
+                  dato[i][0] = estUno;
+                  
+                  
+                  historialPaciente.pGlu.setText(estUno);
+                 
+                  i++;
+                  
+              }}
+          }catch(SQLException e){
+         System.out.println(e);
+    }
+      
+      
+    return dato;
+ }  
+  
+  // RMagnetica
+  public Object [][] getExamen5(){
+     
+      int registros = 0;
+      //obtenemos la cantidad de registros existentes en la tabla
+      try{         
+         PreparedStatement pstm = con.getConnection().prepareStatement("SELECT count(1) as total FROM DETALLE_CONSULTA "); 
+          try (ResultSet res = pstm.executeQuery()) {
+              res.next();
+              registros = res.getInt("total");
+          }
+      }catch(SQLException e){
+         System.out.println(e);
+      }
+      
+    Object[][] dato = new String[registros][1];  
+      try{ 
+         PreparedStatement pstm = con.getConnection().prepareStatement(" SELECT SOLICITADO FROM DETALLE_CONSULTA "   
+                 + "WHERE CODIGO_CONSULTA="+ historialPaciente.codigo.getText()+" AND CODIGO_EXAMEN=5  "); 
+         
+          try (ResultSet res = pstm.executeQuery()) {
+              int i = 0;
+              while(res.next()){
+                  String estUno = res.getString("SOLICITADO");
+                  
+                  dato[i][0] = estUno;
+                  
+                  
+                  historialPaciente.rTor.setText(estUno);
+                 
+                  i++;
+                  
+              }}
+          }catch(SQLException e){
+         System.out.println(e);
+    }
+      
+      
+    return dato;
+ }  
+  
+  public Object [][] getExamen6(){
+     
+      int registros = 0;
+      //obtenemos la cantidad de registros existentes en la tabla
+      try{         
+         PreparedStatement pstm = con.getConnection().prepareStatement("SELECT count(1) as total FROM DETALLE_CONSULTA "); 
+          try (ResultSet res = pstm.executeQuery()) {
+              res.next();
+              registros = res.getInt("total");
+          }
+      }catch(SQLException e){
+         System.out.println(e);
+      }
+      
+    Object[][] dato = new String[registros][1];  
+      try{ 
+         PreparedStatement pstm = con.getConnection().prepareStatement(" SELECT SOLICITADO FROM DETALLE_CONSULTA "   
+                 + "WHERE CODIGO_CONSULTA="+ historialPaciente.codigo.getText()+" AND CODIGO_EXAMEN=6  "); 
+         
+          try (ResultSet res = pstm.executeQuery()) {
+              int i = 0;
+              while(res.next()){
+                  String estUno = res.getString("SOLICITADO");
+                  
+                  dato[i][0] = estUno;
+                  
+                  
+                  historialPaciente.rCol.setText(estUno);
+                 
+                  i++;
+                  
+              }}
+          }catch(SQLException e){
+         System.out.println(e);
+    }
+      
+      
+    return dato;
+ }  
+  
+  public Object [][] getExamen7(){
+     
+      int registros = 0;
+      //obtenemos la cantidad de registros existentes en la tabla
+      try{         
+         PreparedStatement pstm = con.getConnection().prepareStatement("SELECT count(1) as total FROM DETALLE_CONSULTA "); 
+          try (ResultSet res = pstm.executeQuery()) {
+              res.next();
+              registros = res.getInt("total");
+          }
+      }catch(SQLException e){
+         System.out.println(e);
+      }
+      
+    Object[][] dato = new String[registros][1];  
+      try{ 
+         PreparedStatement pstm = con.getConnection().prepareStatement(" SELECT SOLICITADO FROM DETALLE_CONSULTA "   
+                 + "WHERE CODIGO_CONSULTA="+ historialPaciente.codigo.getText()+" AND CODIGO_EXAMEN=7  "); 
+         
+          try (ResultSet res = pstm.executeQuery()) {
+              int i = 0;
+              while(res.next()){
+                  String estUno = res.getString("SOLICITADO");
+                  
+                  dato[i][0] = estUno;
+                  
+                  
+                  historialPaciente.rCab.setText(estUno);
+                 
+                  i++;
+                  
+              }}
+          }catch(SQLException e){
+         System.out.println(e);
+    }
+      
+      
+    return dato;
+ }  
+  
+  public Object [][] getExamen8(){
+     
+      int registros = 0;
+      //obtenemos la cantidad de registros existentes en la tabla
+      try{         
+         PreparedStatement pstm = con.getConnection().prepareStatement("SELECT count(1) as total FROM DETALLE_CONSULTA "); 
+          try (ResultSet res = pstm.executeQuery()) {
+              res.next();
+              registros = res.getInt("total");
+          }
+      }catch(SQLException e){
+         System.out.println(e);
+      }
+      
+    Object[][] dato = new String[registros][1];  
+      try{ 
+         PreparedStatement pstm = con.getConnection().prepareStatement(" SELECT SOLICITADO FROM DETALLE_CONSULTA "   
+                 + "WHERE CODIGO_CONSULTA="+ historialPaciente.codigo.getText()+" AND CODIGO_EXAMEN=8  "); 
+         
+          try (ResultSet res = pstm.executeQuery()) {
+              int i = 0;
+              while(res.next()){
+                  String estUno = res.getString("SOLICITADO");
+                  
+                  dato[i][0] = estUno;
+                  
+                  
+                  historialPaciente.rAbd.setText(estUno);
+                 
+                  i++;
+                  
+              }}
+          }catch(SQLException e){
+         System.out.println(e);
+    }
+      
+      
+    return dato;
+ }  
+  
+  //Eco
+  
+  public Object [][] getExamen9(){
+     
+      int registros = 0;
+      //obtenemos la cantidad de registros existentes en la tabla
+      try{         
+         PreparedStatement pstm = con.getConnection().prepareStatement("SELECT count(1) as total FROM DETALLE_CONSULTA "); 
+          try (ResultSet res = pstm.executeQuery()) {
+              res.next();
+              registros = res.getInt("total");
+          }
+      }catch(SQLException e){
+         System.out.println(e);
+      }
+      
+    Object[][] dato = new String[registros][1];  
+      try{ 
+         PreparedStatement pstm = con.getConnection().prepareStatement(" SELECT SOLICITADO FROM DETALLE_CONSULTA "   
+                 + "WHERE CODIGO_CONSULTA="+ historialPaciente.codigo.getText()+" AND CODIGO_EXAMEN=9  "); 
+         
+          try (ResultSet res = pstm.executeQuery()) {
+              int i = 0;
+              while(res.next()){
+                  String estUno = res.getString("SOLICITADO");
+                  
+                  dato[i][0] = estUno;
+                  
+                  
+                  historialPaciente.eCab.setText(estUno);
+                 
+                  i++;
+                  
+              }}
+          }catch(SQLException e){
+         System.out.println(e);
+    }
+      
+      
+    return dato;
+ }  
+  
+  public Object [][] getExamen10(){
+     
+      int registros = 0;
+      //obtenemos la cantidad de registros existentes en la tabla
+      try{         
+         PreparedStatement pstm = con.getConnection().prepareStatement("SELECT count(1) as total FROM DETALLE_CONSULTA "); 
+          try (ResultSet res = pstm.executeQuery()) {
+              res.next();
+              registros = res.getInt("total");
+          }
+      }catch(SQLException e){
+         System.out.println(e);
+      }
+      
+    Object[][] dato = new String[registros][1];  
+      try{ 
+         PreparedStatement pstm = con.getConnection().prepareStatement(" SELECT SOLICITADO FROM DETALLE_CONSULTA "   
+                 + "WHERE CODIGO_CONSULTA="+ historialPaciente.codigo.getText()+" AND CODIGO_EXAMEN=10  "); 
+         
+          try (ResultSet res = pstm.executeQuery()) {
+              int i = 0;
+              while(res.next()){
+                  String estUno = res.getString("SOLICITADO");
+                  
+                  dato[i][0] = estUno;
+                  
+                  
+                  historialPaciente.eTor.setText(estUno);
+                 
+                  i++;
+                  
+              }}
+          }catch(SQLException e){
+         System.out.println(e);
+    }
+      
+      
+    return dato;
+ }  
+  
+  public Object [][] getExamen11(){
+     
+      int registros = 0;
+      //obtenemos la cantidad de registros existentes en la tabla
+      try{         
+         PreparedStatement pstm = con.getConnection().prepareStatement("SELECT count(1) as total FROM DETALLE_CONSULTA "); 
+          try (ResultSet res = pstm.executeQuery()) {
+              res.next();
+              registros = res.getInt("total");
+          }
+      }catch(SQLException e){
+         System.out.println(e);
+      }
+      
+    Object[][] dato = new String[registros][1];  
+      try{ 
+         PreparedStatement pstm = con.getConnection().prepareStatement(" SELECT SOLICITADO FROM DETALLE_CONSULTA "   
+                 + "WHERE CODIGO_CONSULTA="+ historialPaciente.codigo.getText()+" AND CODIGO_EXAMEN=11  "); 
+         
+          try (ResultSet res = pstm.executeQuery()) {
+              int i = 0;
+              while(res.next()){
+                  String estUno = res.getString("SOLICITADO");
+                  
+                  dato[i][0] = estUno;
+                  
+                  
+                  historialPaciente.eAbd.setText(estUno);
+                 
+                  i++;
+                  
+              }}
+          }catch(SQLException e){
+         System.out.println(e);
+    }
+      
+      
+    return dato;
+ }  
+  
+  public Object [][] getExamen12(){
+     
+      int registros = 0;
+      //obtenemos la cantidad de registros existentes en la tabla
+      try{         
+         PreparedStatement pstm = con.getConnection().prepareStatement("SELECT count(1) as total FROM DETALLE_CONSULTA "); 
+          try (ResultSet res = pstm.executeQuery()) {
+              res.next();
+              registros = res.getInt("total");
+          }
+      }catch(SQLException e){
+         System.out.println(e);
+      }
+      
+    Object[][] dato = new String[registros][1];  
+      try{ 
+         PreparedStatement pstm = con.getConnection().prepareStatement(" SELECT SOLICITADO FROM DETALLE_CONSULTA "   
+                 + "WHERE CODIGO_CONSULTA="+ historialPaciente.codigo.getText()+" AND CODIGO_EXAMEN=12  "); 
+         
+          try (ResultSet res = pstm.executeQuery()) {
+              int i = 0;
+              while(res.next()){
+                  String estUno = res.getString("SOLICITADO");
+                  
+                  dato[i][0] = estUno;
+                  
+                  
+                  historialPaciente.eBra.setText(estUno);
+                 
+                  i++;
+                  
+              }}
+          }catch(SQLException e){
+         System.out.println(e);
+    }
+      
+      
+    return dato;
+ }  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
  
+                  
  
+                   
  
- 
- 
- 
-
 }

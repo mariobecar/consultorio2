@@ -160,6 +160,18 @@ public class BuscarPaciente extends javax.swing.JFrame {
         datos=p.getInfoPaciente();
         Paciente=p.getNombrePaciente();
         Medico=p.getNombreMedico();
+        a=p.getExamen1();
+        b=p.getExamen2();
+        c=p.getExamen3();
+        d=p.getExamen4();
+        e=p.getExamen5();
+        f=p.getExamen6();
+        g=p.getExamen7();
+        h=p.getExamen8();
+        i=p.getExamen9();
+        j=p.getExamen10();
+        k=p.getExamen11();
+        l=p.getExamen12();
         
         
         String jojo= historialPaciente.jTipo.getText();
@@ -176,19 +188,8 @@ public class BuscarPaciente extends javax.swing.JFrame {
         
         
         
-        if("1".equals(historialPaciente.uno.getText())){
-            historialPaciente.pBio.setText("SI");
-        
-        }
-        
-        if("2".equals(historialPaciente.uno.getText())){
-            historialPaciente.pBio.setText("NO");
-        
     }//GEN-LAST:event_BuscarActionPerformed
       
-        
-        
-    }
     private void updateTabla(){         
        
         String[] columNames = {"Fecha","Diagnostico","Tratamiento",};  
@@ -258,7 +259,18 @@ public class BuscarPaciente extends javax.swing.JFrame {
     Object[][]datos;
     Object[][]Paciente;
     Object[][]Medico;
-    
+    Object[][]a;
+    Object[][]b;
+    Object[][]c;
+    Object[][]d;
+    Object[][]e;
+    Object[][]f;
+    Object[][]g;
+    Object[][]h;
+    Object[][]i;
+    Object[][]j;
+    Object[][]k;
+    Object[][]l;
     
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton Buscar;
