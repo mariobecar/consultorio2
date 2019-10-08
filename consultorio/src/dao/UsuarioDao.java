@@ -1,12 +1,15 @@
-package conectate;
+package dao;
 
-import java.sql.*;
+import java.sql.Connection;
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
+import java.sql.SQLException;
 import javax.swing.JOptionPane;
 
 
 
 
-public class Usuario{
+public class UsuarioDao{
 	private String rut;
 	private String nombre;
 	//private String paterno;
@@ -18,15 +21,15 @@ public class Usuario{
 	//private int cargo;
 
 	/** Crea un nueva instancia de la clase usuario */
-	public Usuario(){
+	public UsuarioDao(){
         }
-        public Usuario verificarUsuario(String rut, String tipo){
-        Usuario u=null;
+        public UsuarioDao verificarUsuario(String rut, String tipo){
+        UsuarioDao u=null;
         Connection cn=null;
         PreparedStatement pr=null;
         ResultSet rs=null;
         try{
-            conectate c=new conectate();
+            ConectionDao c=new ConectionDao();
             cn=c.getConnection();
             String sql="SELECT * FROM MEDICO WHERE rut=? AND tipo=?";   
             pr=cn.prepareStatement(sql);                                                                        
@@ -34,7 +37,7 @@ public class Usuario{
             pr.setString(2, tipo);
             rs=pr.executeQuery();
             while(rs.next()){
-                u=new Usuario();
+                u=new UsuarioDao();
                 u.setRut(rs.getString("rut"));                    
                 u.setTipo(rs.getString("tipo"));       
                 u.setNombre(rs.getString("nombre"));
@@ -61,7 +64,7 @@ public class Usuario{
         }
         
         try{
-            conectate c=new conectate();
+            ConectionDao c=new ConectionDao();
             cn=c.getConnection();
             String sql="SELECT * FROM PACIENTE WHERE rut=? AND tipo=?";   
             pr=cn.prepareStatement(sql);                                                                        
@@ -69,7 +72,7 @@ public class Usuario{
             pr.setString(2, tipo);
             rs=pr.executeQuery();
             while(rs.next()){
-                u=new Usuario();
+                u=new UsuarioDao();
                 u.setRut(rs.getString("rut"));                    
                 u.setTipo(rs.getString("tipo"));       
                 u.setNombre(rs.getString("nombre"));

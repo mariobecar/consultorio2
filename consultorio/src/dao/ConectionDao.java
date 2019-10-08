@@ -3,7 +3,7 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package conectate;
+package dao;
 
 import java.sql.Connection;
 import java.sql.DriverManager;
@@ -13,7 +13,7 @@ import java.sql.SQLException;
  *
  * @author mariobecar
  */
-public class conectate {
+public class ConectionDao {
    static String bd = "Consultorio1";//nombre de la base de datos que esta en mysql
    static String login = "consultorio";// usuario
    static String password ="java123";// contraseña
@@ -24,7 +24,7 @@ public class conectate {
    Connection conn = null;
 
    /** Constructor de DbConnection */
-   public conectate() {
+   public ConectionDao() {
       try{
          //obtenemos el driver de para mysql
          Class.forName("org.apache.derby.jdbc.ClientDriver");

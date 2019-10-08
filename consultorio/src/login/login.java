@@ -4,7 +4,7 @@
  * and open the template in the editor.
  */
 package login;
-import conectate.Usuario;
+import dao.UsuarioDao;
 import javax.swing.JOptionPane;
 import medico.EscritorioMedico;
 import paciente.BuscarPaciente;
@@ -150,7 +150,7 @@ public class login extends javax.swing.JFrame {
         } 
         
         //String priv=null;
-        Usuario u=new Usuario();
+        UsuarioDao u=new UsuarioDao();
         u=u.verificarUsuario(pass, tipo);
         if(u==null){
             JOptionPane.showMessageDialog(this, "El nombre de usuario y/o contraseña no son válidos.");
