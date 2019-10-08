@@ -4,12 +4,12 @@
  * and open the template in the editor.
  */
 package login;
+
 import dao.UsuarioDao;
+import entities.Usuario;
 import javax.swing.JOptionPane;
 import medico.EscritorioMedico;
 import paciente.BuscarPaciente;
-
-
 
 public class login extends javax.swing.JFrame {
 
@@ -18,7 +18,7 @@ public class login extends javax.swing.JFrame {
      */
     public login() {
         initComponents();
-         this.setLocationRelativeTo(null);
+        this.setLocationRelativeTo(null);
     }
 
     /**
@@ -128,7 +128,7 @@ public class login extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
-       System.exit(0);
+        System.exit(0);
     }//GEN-LAST:event_jButton2ActionPerformed
 
     private void jComboBox1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jComboBox1ActionPerformed
@@ -139,51 +139,42 @@ public class login extends javax.swing.JFrame {
         String user = (String) jComboBox1.getSelectedItem();
         String pass = jPasswordField1.getText();
         String tipo = "";
-        
-        
-        if(jComboBox1.getSelectedItem()=="medico"){
-            tipo="1";
-        
+
+        if (jComboBox1.getSelectedItem() == "medico") {
+            tipo = "1";
+
         }
-        if (jComboBox1.getSelectedItem()=="paciente"){
-            tipo="2";
-        } 
-        
+        if (jComboBox1.getSelectedItem() == "paciente") {
+            tipo = "2";
+        }
+
         //String priv=null;
-        UsuarioDao u=new UsuarioDao();
-        u=u.verificarUsuario(pass, tipo);
-        if(u==null){
+        Usuario u = new UsuarioDao().verificarUsuario(pass, tipo);
+        if (u == null) {
             JOptionPane.showMessageDialog(this, "El nombre de usuario y/o contraseña no son válidos.");
+        } else if (u != null) {
+            if (tipo == "1") {
+                //priv="medico";
+                JOptionPane.showMessageDialog(this, "Bienvenido (a) " + user + ": " + u.getNombre() + "");
+                EscritorioMedico e = new EscritorioMedico();
+                e.setVisible(rootPaneCheckingEnabled);
+                dispose();
+
+            } else if (tipo == "2") {
+                //priv="paciente";
+                JOptionPane.showMessageDialog(this, "Bienvenido (a) " + user + ": " + u.getNombre() + "");
+                BuscarPaciente b = new BuscarPaciente();
+                b.setVisible(rootPaneCheckingEnabled);
+                dispose();
+
+            }
+        } else {
+            JOptionPane.showMessageDialog(this, "Error de inicio de sesión: El tipo de usuario \"" + user + "\" no tiene un area de trabajo creada.\nPor favor indique esta situación al administrador del sistema.");
         }
-        else if(u!=null){
-                if(tipo=="1"){
-                    //priv="medico";
-                    JOptionPane.showMessageDialog(this, "Bienvenido (a) "+user+": "+u.getNombre()+"" );
-                    EscritorioMedico e= new EscritorioMedico();
-                    e.setVisible(rootPaneCheckingEnabled);
-                    dispose();
-                    
-                }
-                else if(tipo=="2"){
-                    //priv="paciente";
-                    JOptionPane.showMessageDialog(this, "Bienvenido (a) "+user+": "+u.getNombre()+"" );
-                    BuscarPaciente b = new BuscarPaciente();
-                    b.setVisible(rootPaneCheckingEnabled);
-                    dispose();
-                    
-                }
-                }
-                else{
-                    JOptionPane.showMessageDialog(this, "Error de inicio de sesión: El tipo de usuario \""+user+"\" no tiene un area de trabajo creada.\nPor favor indique esta situación al administrador del sistema.");
-                }
         BuscarPaciente.RUT.setText(pass);
-      
+
     }//GEN-LAST:event_jButton1ActionPerformed
 
-    
-    
-
-    
     /**
      * @param args the command line arguments
      */
