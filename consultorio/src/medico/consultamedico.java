@@ -5,8 +5,9 @@
  */
 package medico;
 
+import dao.UsuarioDao;
+import entities.Usuario;
 import javax.swing.JOptionPane;
-import conectate.Usuario;
 
 /**
  *
@@ -136,8 +137,7 @@ public class consultamedico extends javax.swing.JFrame {
     String tipo = "2";
     
     
-    Usuario u=new Usuario();
-        u=u.verificarUsuario(pass, tipo);
+    Usuario u=new UsuarioDao().verificarUsuario(pass, tipo);
         if(u==null){
             JOptionPane.showMessageDialog(this, "ingrese un rut, por favor");
         }

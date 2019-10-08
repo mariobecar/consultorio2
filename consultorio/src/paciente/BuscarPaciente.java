@@ -5,7 +5,7 @@
  */
 package paciente;
 
-import conectate.Paciente;
+import dao.PacienteDao;
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
 import java.util.GregorianCalendar;
@@ -253,7 +253,7 @@ public class BuscarPaciente extends javax.swing.JFrame {
         });
     }
     
-    Paciente p= new Paciente ();
+    PacienteDao p= new PacienteDao ();
     Object[][]dtPer;
     int fila= -1 ;
     Object[][]datos;
